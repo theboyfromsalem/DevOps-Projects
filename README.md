@@ -4,10 +4,19 @@
 ## Step 0 - Preparing Prerequisite
 
 - Create an AWS account.
-- Launch a new EC2 instance of t2.micro family with Ubuntu Server 20.04 LTS (HVM) on AWS.
-- Connect to the instance on your local machine.
+![alt text](<Images/Screenshot 2026-01-05 030142.png>)
 
-![alt text](<Images/Screenshot 2026-01-01 223411.png>)
+- Launch a new EC2 instance of t2.micro family with Ubuntu Server 20.04 LTS (HVM) on AWS.
+![alt text](<Images/Screenshot 2026-01-05 033854.png>)
+- Connect to the instance on your local machine.
+![alt text](<Images/Screenshot 2026-01-05 034825.png>)
+
+![alt text](<Images/Screenshot 2026-01-05 035241.png>)
+
+![alt text](<Images/Screenshot 2026-01-05 040704.png>)
+
+
+![alt text](<Images/Screenshot 2026-01-05 041023.png>)
 
 
 ## Step 1 - INSTALLING APACHE AND UPDATING THE FIREWALL
