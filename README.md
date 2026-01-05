@@ -4,11 +4,14 @@
 ## Step 0 - Preparing Prerequisite
 
 - Create an AWS account.
+
 ![alt text](<Images/Screenshot 2026-01-05 030142.png>)
 
 - Launch a new EC2 instance of t2.micro family with Ubuntu Server 20.04 LTS (HVM) on AWS.
+
 ![alt text](<Images/Screenshot 2026-01-05 033854.png>)
 - Connect to the instance on your local machine.
+
 ![alt text](<Images/Screenshot 2026-01-05 034825.png>)
 
 ![alt text](<Images/Screenshot 2026-01-05 035241.png>)
@@ -27,17 +30,25 @@
 - Run apache2 package installation
 `sudo apt install apache2`
 
-![alt text](<Images/Screenshot 2026-01-01 230517.png>)
+
+![alt text](<Images/Screenshot 2026-01-05 151834.png>)
 
 - To verify that apache2 is running as a Service in our OS, use following command
- `sudo systemctl status apache2`
+ `sudo systemctl status apache2` 
+
+
+![alt text](<Images/Screenshot 2026-01-05 152512.png>)
+
 
 - Open inbound connection through port 80
-![alt text](<Images/Screenshot 2026-01-01 231434.png>)
+
+![alt text](<Images/Screenshot 2026-01-05 153759.png>)
+
 
 - To view the Apache default page, Go to http://Public-IP-Address:80 in your browser
 
-![alt text](<Images/Screenshot 2026-01-01 233242.png>)
+![alt text](<Images/Screenshot 2026-01-05 155101.png>)
+
 
 
 ## Step 2 - INSTALLING MYSQL
@@ -47,6 +58,8 @@
 
 - When prompted, confirm installation by typing Y, and then ENTER.
 
+![alt text](<Images/Screenshot 2026-01-05 155759.png>)
+
 - When the installation is finished, log in to the MySQL console by typing:     
 `sudo mysql`
 - This will connect to the MySQL server as the administrative database user root, which is inferred by the use of sudo when running this command.
@@ -54,24 +67,33 @@
 `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord'`
 - Exit the MySQL shell with:    
 `mysql> exit`
+
+![alt text](<Images/Screenshot 2026-01-05 161231.png>)
+
 - Start the interactive script by running:  
 `sudo mysql_secure_installation`
-
 - This will ask if you want to configure the VALIDATE PASSWORD PLUGIN.
 - Answer Y for yes, or anything else to continue without enabling 
-![alt text](<Images/Screenshot 2026-01-02 000322.png>)
+
+![alt text](<Images/Screenshot 2026-01-05 161957.png>)
 
 - When you’re finished, test if you’re able to log in to the MySQL console by typing:   
 `sudo mysql -p`
 - To exit the MySQL console, type:
    `mysql> exit`
 
+![alt text](<Images/Screenshot 2026-01-05 162838.png>)
+
 ## Step 3 — INSTALLING PHP
  - To install these 3 packages at once, run:  
 `sudo apt install php libapache2-mod-php php-mysql`
-![alt text](<Images/Screenshot 2026-01-02 003007.png>)
+
+![alt text](<Images/Screenshot 2026-01-05 163455.png>)
+
 - Once the installation is finished, you can run the following command to confirm your PHP version:   
 `php -v`
+
+![alt text](<Images/Screenshot 2026-01-05 163613.png>)
 
 - At this point, your LAMP stack is completely installed and fully operational.
 
