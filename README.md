@@ -74,9 +74,6 @@
 `sudo mysql_secure_installation`
 - This will ask if you want to configure the VALIDATE PASSWORD PLUGIN.
 - Answer Y for yes, or anything else to continue without enabling 
-
-![alt text](<Images/Screenshot 2026-01-05 161957.png>)
-
 - When you’re finished, test if you’re able to log in to the MySQL console by typing:   
 `sudo mysql -p`
 - To exit the MySQL console, type:
