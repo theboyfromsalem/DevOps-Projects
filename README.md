@@ -104,74 +104,104 @@
 ## Step 4 — CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE 
 
 - Create the directory for 'newproject' using mkdir command as follows:   
-`sudo mkdir /var/www/newproject`
+`sudo mkdir /var/www/projectlamp`
+
 - Next, assign ownership of the directory with your current system user:  
-  `sudo chown -R $USER:$USER /var/www/newproject`
+  `sudo chown -R $USER:$USER /var/www/projectlamp`
+
 - Create and open a new configuration file in Apache’s sites-available directory using:
- `sudo nano /etc/apache2/sites-available/newproject.conf`
+ ` sudo vi /etc/apache2/sites-available/projectlamp.conf`
+
+![alt text](<Images/Screenshot 2026-01-05 201808.png>)
+
 - Paste in the following bare-bones configuration
 
-
   `<VirtualHost *:80>
-ServerName newproject
-ServerAlias www.newproject
+ServerName projectlamp
+ServerAlias www.projectlamp
 ServerAdmin webmaster@localhost
-DocumentRoot /var/www/newproject
+DocumentRoot /var/www/projectlamp
 ErrorLog ${APACHE_LOG_DIR}/error.log
 CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>`
+
+![alt text](<Images/Screenshot 2026-01-05 201652.png>)
+
 
 - You can use the `ls` command to show the new file in the sites-available directory:                           
 `sudo ls /etc/apache2/sites-available`
 
 - You can now use `a2ensite` command to enable the new virtual host:    
-`sudo a2ensite newproject`
+`sudo a2ensite projectlamp`
 -  To disable Apache’s default website use `a2dissite` command, type:
 `sudo a2dissite 000-default`
 - To make sure your configuration file doesn’t contain syntax errors, run:  
 `sudo apache2ctl configtest`
-
 - Finally, reload Apache so these changes take effect:  
 `sudo systemctl reload apache2`
-![alt text](<Images/Screenshot 2026-01-02 010801.png>)
+
+![alt text](<Images/Screenshot 2026-01-05 202102.png>)
+
+
+
+
+- Your new website is now active, but the web root /var/www/projectlamp is still empty. Create an index.html file in that location so that we can test that the virtual host works as expected, run:
+`echo "Hello LAMP from hostname $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) with public IP $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)" | sudo tee /var/www/projectlamp/index.html`
+
+![alt text](<Images/Screenshot 2026-01-05 202655.png>)
+
+- Now go to your browser and try to open your website URL using IP address:
+`http://<Public-IP-Address>:80`
+
+If you see the text from ‘echo’ command you wrote to index.html file, then it means your Apache virtual host is working as expected.
+
+![alt text](<Images/Screenshot 2026-01-05 202956.png>)
+
+
+
 
 
 ## Step 5 — ENABLE PHP ON THE WEBSITE
 
 - With the default DirectoryIndex settings on Apache, a file named index.html will always take precedence over an index.php file.
 
-- In case you want to change this behavior, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf file and change the order in which the index.php file is listed within the DirectoryIndex directive:
+- In case you want to change this behavior, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf file and change the order in which the index.php file is listed within the DirectoryIndex directive, run :
 
 `sudo nano /etc/apache2/mods-enabled/dir.conf`
+
+then edit it thus:
 
 `<IfModule mod_dir.c>
         #Change this:
         #DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
         #To this:
         DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
-</IfModule>
-`
+</IfModule>`
+
+
+![alt text](<Images/Screenshot 2026-01-05 215249.png>)
 
 - After saving and closing the file, you will need to reload Apache so the changes take effect:
 
 `sudo systemctl reload apache2`
 
-![alt text](<Images/Screenshot 2026-01-02 013518.png>)
-
+![alt text](<Images/Screenshot 2026-01-05 215642.png>)
 
 - Finally, we will create a PHP script to test that PHP is correctly installed and configured on your server.
 
 - Create a new file named index.php inside your custom web root folder:
 
-`vim /var/www/newproject/index.php`
+`sudo nano /var/www/projectlamp/index.php`
 
 - This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 
 `<?php
 phpinfo();
 `
+![alt text](<Images/Screenshot 2026-01-05 220043.png>)
 
 - When you are finished, save and close the file, refresh the page and you will see a page similar to this:
+
 ![alt text](Images/php-page.png)
 
 
