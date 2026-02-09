@@ -1,4 +1,4 @@
-### SIMPLE TO-DO APPLICATION ON MERN WEBSTACK 
+## **SIMPLE TO-DO APPLICATION ON MERN WEBSTACK** 
 #### MERN Web stack consists of following components:
 
 - **MongoDB:** A document-based, No-SQL database used to store application data in a form of documents.
@@ -7,11 +7,11 @@
 - **Node.js:** A JavaScript runtime environment. It is used to run JavaScript on a machine rather than in a browser.
 #### This document describes the steps used to implement MERN WEB STACK on an AWS EC2 instance. The screenshots taken during the process are included below in the order they were used to perform the setup.
 
-#### Preparing prerequisites
+### Prepare prerequisites
 
-- Create an EC2 instance of t2.micro family with Ubuntu Server of 22.04 LTS (HVM) image.
+Create an EC2 instance of t2.micro family with Ubuntu Server of 22.04 LTS (HVM) image.
 
-### STEP 1 - BACKEND CONFIGURATION.
+### **BACKEND CONFIGURATION.**
 
 Update Ubuntu, RUN
 
@@ -48,20 +48,20 @@ Verify the node installation with the command below:
 
 ![alt text](<Images/Screenshot 2026-02-06 160742.png>)
 
-Application Code Setup
+**Application Code Setup**
 
 Create a new directory for your To-Do project run: `mkdir Todo`
 
 check to verify that the directory you created actually worked, run:
 `ls`
 
-- TIP: In order to see some more useful information about files and directories, you can use following combination of keys `ls -lih` – it will show you different properties and size in human readable format. You can learn more about different useful keys for ls command with `ls --help`.
+**TIP:** In order to see some more useful information about files and directories, you can use following combination of keys `ls -lih` – it will show you different properties and size in human readable format. You can learn more about different useful keys for ls command with `ls --help`.
 
 Now change your current directory to the newly created one:
 
 `cd Todo`
 
-Next, you will use the command npm init to initialise your project, so that a new file named package.json will be created. This file will normally contain information about your application and the dependencies that it needs to run. Follow the prompts after running the command. You can press Enter several times to accept default values, then accept to write out the package.json file by typing yes.
+Next, you will use the command `npm init` to initialise your project, so that a new file named package.json will be created. This file will normally contain information about your application and the dependencies that it needs to run. Follow the prompts after running the command. You can press Enter several times to accept default values, then accept to write out the package.json file by typing yes.
 
 `npm init`
 
@@ -185,7 +185,8 @@ module.exports = router;
 ![alt text](<Images/Screenshot 2026-02-06 181355.png>)
 
 
-MODELS
+**MODELS**
+
 Now comes the interesting part, since the app is going to make use of Mongodb which is a NoSQL database, we need to create a model.
 A model is at the heart of JavaScript based applications, and it is what makes it interactive.
 We will also use models to define the database schema . This is important so that we will be able to define the fields stored in each Mongodb document. (Seems like a lot of information, but not to worry, everything will become clear to you over time. I promise!!!)
@@ -264,7 +265,7 @@ module.exports = router;
 ```
 The next piece of our application will be the MongoDB Database!
 
-#### MONGODB DATABASE
+### **MONGODB DATABASE**
 We need a database where we will store our data. For this we will make use of mLab. mLab provides MongoDB database as a service solution (DBaaS), so to make life easy, you will need to sign up for a shared clusters free account, which is ideal for our use case. Sign up here; https://www.mongodb.com/cloud/atlas/register.
 
  Follow the sign up process, select AWS as the cloud provider, and choose a region near you.
@@ -361,7 +362,7 @@ Start your server using the command:
 
 ![alt text](<Images/Screenshot 2026-02-07 011301.png>)
 
-#### TESTING OUR BACKEND CODE
+### **TESTING OUR BACKEND CODE**
 
 So far, we have built the backend of our To-Do application. This backend handles things like saving tasks, reading tasks, updating them, and deleting them from the database. We have also successfully connected our app to a database.
 
@@ -389,7 +390,7 @@ Create a GET request to your API on http://PublicIP-or-PublicDNS:5000/todos. Thi
 
 ![alt text](<Images/Screenshot 2026-02-07 021940.png>)
 
-#### FRONTEND CREATION
+### **FRONTEND CREATION**
 Since we are done with the functionality we want from our backend and API, it is time to create a user interface for a Web client (browser) to interact with the application via API.
 
 To start out with the frontend of the To-do app, we will use the create-react-app command to scaffold our app.
