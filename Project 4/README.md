@@ -223,7 +223,7 @@ Create a file named book.js
 
 Copy and paste the code below into `book.js`
 
-``` java var mongoose = require('mongoose');
+```  var mongoose = require('mongoose');
 var dbHost = 'mongodb://localhost:27017/test';
 mongoose.connect(dbHost);
 mongoose.connection;
@@ -258,7 +258,7 @@ Add a file named script.js and copy and paste the code below in it :
 
 `nano script.js`
 
-``` java var app = angular.module('myApp', []);
+``` var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
   $http( {
     method: 'GET',
@@ -302,55 +302,161 @@ In the public folder, create a file named index.html and paste the code below in
 
 `nano index.html`
 
-``` html <!doctype html>
-<html ng-app="myApp" ng-controller="myCtrl">
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div>
-      <table>
+``` <!DOCTYPE html>
+<html>
+<head>
+  <title>Book Manager</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      padding: 30px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    form {
+      margin-bottom: 25px;
+    }
+
+    input {
+      padding: 6px;
+      margin: 5px;
+      width: 180px;
+    }
+
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .add-btn {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+    }
+
+    .add-btn:hover {
+      background-color: #1e8449;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Book Manager</h2>
+
+<form id="bookForm">
+  <input type="text" id="name" placeholder="Book Name" required>
+  <input type="text" id="isbn" placeholder="ISBN" required>
+  <input type="text" id="author" placeholder="Author" required>
+  <input type="number" id="pages" placeholder="Pages" required>
+  <button type="submit" class="add-btn">Add Book</button>
+</form>
+
+<table id="bookTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ISBN</th>
+      <th>Author</th>
+      <th>Pages</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  async function loadBooks() {
+    const response = await fetch('/book');
+    const books = await response.json();
+
+    const tbody = document.querySelector('#bookTable tbody');
+    tbody.innerHTML = '';
+
+    books.forEach(book => {
+      const row = `
         <tr>
-          <td>Name:</td>
-          <td><input type="text" ng-model="Name"></td>
+          <td>${book.name}</td>
+          <td>${book.isbn}</td>
+          <td>${book.author}</td>
+          <td>${book.pages}</td>
+          <td>
+            <button class="delete-btn" onclick="deleteBook('${book.isbn}')">
+              Delete
+            </button>
+          </td>
         </tr>
-        <tr>
-          <td>Isbn:</td>
-          <td><input type="text" ng-model="Isbn"></td>
-        </tr>
-        <tr>
-          <td>Author:</td>
-          <td><input type="text" ng-model="Author"></td>
-        </tr>
-        <tr>
-          <td>Pages:</td>
-          <td><input type="number" ng-model="Pages"></td>
-        </tr>
-      </table>
-      <button ng-click="add_book()">Add</button>
-    </div>
-    <hr>
-    <div>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Isbn</th>
-          <th>Author</th>
-          <th>Pages</th>
- 
-        </tr>
-        <tr ng-repeat="book in books">
-          <td>{{book.name}}</td>
-          <td>{{book.isbn}}</td>
-          <td>{{book.author}}</td>
-          <td>{{book.pages}}</td>
- 
-          <td><input type="button" value="Delete" data-ng-click="del_book(book)"></td>
-        </tr>
-      </table>
-    </div>
-  </body>
+      `;
+      tbody.innerHTML += row;
+    });
+  }
+
+  document.getElementById('bookForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const book = {
+      name: document.getElementById('name').value,
+      isbn: document.getElementById('isbn').value,
+      author: document.getElementById('author').value,
+      pages: document.getElementById('pages').value
+    };
+
+    await fetch('/book', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book)
+    });
+
+    this.reset();
+    loadBooks();
+  });
+
+  async function deleteBook(isbn) {
+    await fetch('/book/' + isbn, {
+      method: 'DELETE'
+    });
+    loadBooks();
+  }
+
+  loadBooks();
+</script>
+
+</body>
 </html>
 ```
 ![alt text](<Images/Screenshot 2026-02-13 070208.png>)
@@ -371,7 +477,7 @@ You need to open TCP port 3300 in your AWS Web Console for your EC2 Instance to 
 
 Then open your web browser and run your Public IP add with port 3300
 
-![alt text](<Images/Screenshot 2026-02-13 070900.png>)
+![alt text](<Images/Screenshot 2026-02-14 150732.png>)
 
 
 
