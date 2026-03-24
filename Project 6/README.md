@@ -136,7 +136,7 @@ Use `lvcreate` utility to create 2 logical volumes. apps-lv (Use half of the PV 
 
 - The UUID of the device will be used to update the /etc/fstab file; `sudo blkid`
 
-![alt text](image.png)
+![alt text](<Images/Screenshot 2026-03-24 061401.png>)
 
 - Update /etc/fstab in this format using your own UUID and rememeber to remove the leading and ending quotes.
 
@@ -150,7 +150,7 @@ Use `lvcreate` utility to create 2 logical volumes. apps-lv (Use half of the PV 
 
 - Verify your setup by running `df -h`, output must look like this:
 
-![alt text](image-1.png)
+![alt text](<Images/Screenshot 2026-03-24 061546.png>)
 
 
 #### **STEP 2 - PREPARE THE DATABASE SERVER.**
@@ -275,15 +275,13 @@ exit
 
 ![alt text](<Images/Screenshot 2026-03-22 001045.png>)
 
-![alt text](<Screenshot 2026-03-22 001851.png>)
+![alt text](<Images/Screenshot 2026-03-22 001851.png>)
 
-![alt text](<Screenshot 2026-03-22 001930.png>)
+![alt text](<Images/Screenshot 2026-03-22 001930.png>)
 
-![alt text](<Screenshot 2026-03-22 002007.png>)
+![alt text](<Images/Screenshot 2026-03-22 002007.png>)
 
-![alt text](<Screenshot 2026-03-22 002032.png>)
-
-
+![alt text](<Images/Screenshot 2026-03-22 002032.png>)
 
 
 
