@@ -242,7 +242,7 @@ setsebool -P httpd_execmem 1
 ![alt text](<Images/Screenshot 2026-04-08 120313.png>)
 ![alt text](<Images/Screenshot 2026-04-08 121118.png>)
 
-![alt text](<Screenshot 2026-04-08 121247.png>)
+![alt text](<Images/Screenshot 2026-04-08 121247.png>)
 
 **Repeat steps 1-5 for another 2 Web Servers.**
 
