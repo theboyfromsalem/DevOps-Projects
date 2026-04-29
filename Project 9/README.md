@@ -178,3 +178,12 @@ Save and push another change to the GitHub README.md.
 The build triggered automatically. In the console output, you should see the success logs.
 
 ![alt text](<Images/Screenshot 2026-04-29 213907.png>)
+
+**VERIFY THE FILES LANDED ON THE NFS SERVER**.
+
+- SSH into the NFS server and check:
+
+```
+cat /mnt/apps/README.md
+```
+![alt text](<Images/Screenshot 2026-04-29 222323.png>)
